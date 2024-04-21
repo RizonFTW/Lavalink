@@ -36,13 +36,10 @@ class ServerConfig {
     var resamplingQuality: ResamplingQuality? = null
     var trackStuckThresholdMs: Long? = null
     var useSeekGhosting: Boolean? = null
-    var youtubePlaylistLoadLimit: Int? = null
     var playerUpdateInterval: Int = 5
     var isGcWarnings = true
-    var isYoutubeSearchEnabled = true
     var isSoundcloudSearchEnabled = true
     var ratelimit: RateLimitConfig? = null
-    var youtubeConfig: YoutubeConfig? = null
     var httpConfig: HttpConfig? = null
     var filters: Map<String, Boolean> = mapOf()
 }

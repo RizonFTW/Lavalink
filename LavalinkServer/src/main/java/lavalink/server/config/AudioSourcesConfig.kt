@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties(prefix = "lavalink.server.sources")
 @Component
 data class AudioSourcesConfig(
-    var isYoutube: Boolean = true,
     var isBandcamp: Boolean = true,
     var isSoundcloud: Boolean = true,
     var isTwitch: Boolean = true,
