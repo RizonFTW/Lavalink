@@ -1,3 +1,7 @@
+# Notice
+
+This was forked and modified to remove youtube from LavaLink. Mainly used for [ShuffleBot](https://github.com/ShuffleDevelopment)
+
 # Lavalink
 
 <img align="right" src="/branding/lavalink.svg" width=200 alt="Lavalink logo">
