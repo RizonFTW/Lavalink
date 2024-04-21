@@ -2,6 +2,13 @@
 
 This was forked and modified to remove youtube from LavaLink. Mainly used for [ShuffleBot](https://github.com/ShuffleDevelopment)
 
+Feel free to use this for your own bot.
+
+### Build from source
+```
+./gradlew bootJar
+```
+
 # Lavalink
 
 <img align="right" src="/branding/lavalink.svg" width=200 alt="Lavalink logo">
