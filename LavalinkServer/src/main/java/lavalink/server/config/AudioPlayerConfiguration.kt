@@ -100,7 +100,43 @@ class AudioPlayerConfiguration {
         }
 
         val mcr: MediaContainerRegistry = MediaContainerRegistry.extended(*mediaContainerProbes.toTypedArray())
-        
+
+        if (sources.isYoutube) {
+            val youtubeConfig = serverConfig.youtubeConfig
+            val youtube: YoutubeAudioSourceManager
+            if (youtubeConfig != null) {
+                if (youtubeConfig.email.isBlank() && youtubeConfig.password.isBlank()) {
+                    log.info("Email and password fields are blank, some age restricted videos will throw exceptions")
+                }
+                youtube = YoutubeAudioSourceManager(
+                    serverConfig.isYoutubeSearchEnabled,
+                    youtubeConfig.email,
+                    youtubeConfig.password
+                )
+            } else {
+                youtube = YoutubeAudioSourceManager(
+                    serverConfig.isYoutubeSearchEnabled,
+                    "",
+                    ""
+                )
+                log.debug("Youtube config block is not found")
+            }
+            if (routePlanner != null) {
+                val retryLimit = serverConfig.ratelimit?.retryLimit ?: -1
+                when {
+                    retryLimit < 0 -> YoutubeIpRotatorSetup(routePlanner).forSource(youtube).setup()
+                    retryLimit == 0 -> YoutubeIpRotatorSetup(routePlanner).forSource(youtube)
+                        .withRetryLimit(Int.MAX_VALUE).setup()
+
+                    else -> YoutubeIpRotatorSetup(routePlanner).forSource(youtube).withRetryLimit(retryLimit).setup()
+
+                }
+            }
+            val playlistLoadLimit = serverConfig.youtubePlaylistLoadLimit
+            if (playlistLoadLimit != null) youtube.setPlaylistPageCount(playlistLoadLimit)
+
+            audioPlayerManager.registerSourceManager(youtube)
+        }
         if (sources.isSoundcloud) {
             val dataReader = DefaultSoundCloudDataReader()
             val dataLoader = DefaultSoundCloudDataLoader()

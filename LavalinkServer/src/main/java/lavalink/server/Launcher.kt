@@ -82,7 +82,7 @@ object Launcher {
                 appendLine("$indentation*** Unable to find or load Git metadata ***")
             }
             appendLine()
-            append("${indentation}Custom Version:        "); appendLine(version)
+            append("${indentation}Version:        "); appendLine(version)
             if (gitRepoState.isLoaded) {
                 append("${indentation}Build time:     "); appendLine(buildTime)
                 append("${indentation}Branch          "); appendLine(gitRepoState.branch)
@@ -100,14 +100,14 @@ object Launcher {
         val green = "[32m"
         val defaultC = "[0m"
 
-        var vanity = ("g       .  re _                  _ _       _    g__ _ _\n"
-                + "g      /\\\\ re| | __ ___   ____ _| (_)_ __ | | __g\\ \\ \\ \\\n"
-                + "g     ( ( )re| |/ _` \\ \\ / / _` | | | '_ \\| |/ /g \\ \\ \\ \\\n"
-                + "g      \\\\/ re| | (_| |\\ V / (_| | | | | | |   < g  ) ) ) )\n"
-                + "g       '  re|_|\\__,_| \\_/ \\__,_|_|_|_| |_|_|\\_\\g / / / /\n"
-                + "g             Custom Lavalink for Shuffle Bot g/_/_/_/d")
+        var vanity = ("g       .  r _                  _ _       _    g__ _ _\n"
+                + "g      /\\\\ r| | __ ___   ____ _| (_)_ __ | | __g\\ \\ \\ \\\n"
+                + "g     ( ( )r| |/ _` \\ \\ / / _` | | | '_ \\| |/ /g \\ \\ \\ \\\n"
+                + "g      \\\\/ r| | (_| |\\ V / (_| | | | | | |   < g  ) ) ) )\n"
+                + "g       '  r|_|\\__,_| \\_/ \\__,_|_|_|_| |_|_|\\_\\g / / / /\n"
+                + "d    =========================================g/_/_/_/d")
 
-        vanity = vanity.replace("re".toRegex(), red)
+        vanity = vanity.replace("r".toRegex(), red)
         vanity = vanity.replace("g".toRegex(), green)
         vanity = vanity.replace("d".toRegex(), defaultC)
         return vanity
@@ -152,7 +152,7 @@ object Launcher {
                         }
 
                         is ApplicationReadyEvent -> {
-                            log.info("Lavalink Shuffle is ready to accept connections.")
+                            log.info("Lavalink is ready to accept connections.")
                         }
 
                         is ApplicationFailedEvent -> {
